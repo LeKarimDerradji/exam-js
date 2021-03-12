@@ -5,28 +5,21 @@ const square = [
 ]
 
 
-let number = 3
-
-// Returns true if mat[][] is magic 
-// square, else returns false. 
-
-
-function isMagicSquare(matrix) {
-    let sum = 0
-    for (const i in matrix, number) {
-        sum = sum + matrix[i][i]
+function isMagicSquare(array) {
+    function checkMagic(array) {
+        array = array.map(x => x.reduce((a, b) => a + b));
+ 
+        return Array.from(new Set(array)).length === 1;
     }
-    
-    sum2 = 0
-    for (const i in matrix, number) {
-        sum2 = sum2 + matrix[i][number - i - 1]
-        if (sum != sum2) {
-            return false
-        }
+ 
+    function rotate(array) {
+        return array[0].map((x, i) => array.map(x => x[i]))
     }
-
-    // Already lost
-
+   
+    if(checkMagic(array) &&
+    checkMagic(rotate(array))) {
+        console.log(true)
+    } ;
 }
 
-// Okay I really don't know what I'm doing, let's push all the others. 
+isMagicSquare(square)
